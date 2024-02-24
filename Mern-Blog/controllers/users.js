@@ -7,8 +7,8 @@ exports.auth = async (req, res, next) => {
   //Step 5 happens here
   try {
     const token = req.header('Authorization').replace('Bearer ', '')
-    const data = jwt.verify(token, process.env.SECRET)
-    const user = await User.findOne({ _id: data._id })
+    const payloadFromJWT = jwt.verify(token, process.env.SECRET)
+    const user = await User.findOne({ _id: payloadFromJWT._id })
     if (!user) {
       throw new Error()
     }
