@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 exports.auth = async (req, res, next) => {
+  //Step 5 happens here
   try {
     const token = req.header('Authorization').replace('Bearer ', '')
     const data = jwt.verify(token, process.env.SECRET)
